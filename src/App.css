@@ -40,12 +40,21 @@ main {
 /* # # # # # # # #   HEADER   # # # # # # # # # # # # # # # # #  */
 
 .header {
+  position: fixed;
   background-color: white;
+  width: 100%;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
   box-shadow: 4px 4px 10px #cdcccc;
+}
+
+.headerGhost {
+  /* background-color: red; */
+  height: 85px;
+  width: 100%;
 }
 
 /* + et Deposer une annonce */
@@ -182,6 +191,10 @@ input[type="submit"]:hover {
   cursor: pointer;
 }
 
+.pages {
+  margin-bottom: 20px;
+}
+
 /* # # # # # # # #   SIGN UP FORM   # # # # # # # # # # # # # # # # #  */
 
 /* les deux mots de passe */
@@ -277,10 +290,13 @@ input[type="submit"]:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* height: 300px; */
+  overflow: scroll;
 }
 
 /* Le conteneur contraint la hauteur de tout */
 .offersitem {
+  /* border: solid 2px red; */
   background-color: white;
   height: 180px;
   width: 700px;

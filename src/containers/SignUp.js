@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 // import { useHistory } from "react-router-dom";
+import { apiUrl } from "../config";
 
 const sendSignUp = async (email, password, pseudo, loginOK, apiAddress) => {
   try {
-    const response = await axios.post(apiAddress + "/user/signup", {
+    const response = await axios.post(apiUrl + "/auth/signup", {
       email: email,
-      username: pseudo,
+      name: pseudo,
       password: password,
     });
-    console.log(response.data);
 
-    loginOK(response.data.account.username, response.data.token);
+    loginOK(pseudo, response.data.authToken);
   } catch (error) {
     alert("ERROR", error.message);
   }

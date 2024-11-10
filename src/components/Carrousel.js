@@ -3,14 +3,12 @@ import React, { useState } from "react";
 const Carrousel = ({ photos }) => {
   const [imgNum, setImgNum] = useState(0);
   const totalImages = photos.length;
-  console.log("total", totalImages);
-  console.log(photos);
-  console.log(imgNum);
 
   return (
     <div className="carrousel">
       {/* //main image */}
-      <img src={photos[imgNum].url} alt="pic" />
+
+      <img src={photos[imgNum]?.url} alt="pic" />
       {/* //previews */}
       <div className="previews">
         {photos.map((photo, index) => {
@@ -20,7 +18,7 @@ const Carrousel = ({ photos }) => {
                 setImgNum(index);
               }}
             >
-              <img src={photo.url} alt="pic" />
+              <img src={photo?.url} alt="pic" />
             </div>
           );
         })}

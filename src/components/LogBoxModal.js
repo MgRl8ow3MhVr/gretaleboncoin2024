@@ -1,30 +1,51 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import { useHistory } from "react-router-dom";
-// import { CSSTransition } from "react-transition-group";
+import { useNavigate } from "react-router-dom";
+import { apiUrl } from "../config";
+import { toast } from "react-toastify";
 
-const login = async (email, password, loginOK, unshowmodal, apiAddress) => {
+import { store_id } from "../config";
+
+const login = async (email, password, loginOK, unshowmodal) => {
   try {
-    const response = await axios.post(apiAddress + "/login", {
-      email: email, //farid@lereacteur.io
-      password: password, //azerty
+    const response = await axios.post(apiUrl + "/auth/login", {
+      email: email,
+      password: password,
     });
-    loginOK(response.data.account.username, response.data.token);
+    const token = response.data.authToken;
+
+    const response2 = await axios.get(
+      // apiUrl + `/auth/me?store_id=3`,
+      apiUrl + `/auth/me?store_id=${store_id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response2.data.name) {
+      throw new Error(response2.data.payload);
+    }
+    const userName = response2.data.name;
+
+    loginOK(userName, token);
+    toast("Bienvenue " + userName, { type: "success" });
+
     unshowmodal();
-  } catch (error) {
-    alert("Authent Error");
+  } catch (e) {
+    alert("Authent Error" + e.message);
   }
 };
 
 const LogBoxModal = (props) => {
-  // const history = useHistory();
   const { loginOK, unshowmodal, apiAddress } = props;
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const navigate = useNavigate();
 
   return (
     <>
-      {/* <CSSTransition classNames="dialog" timeout={300}> */}
       <div>
         <div className="blackbox" onClick={unshowmodal}></div>
         <form
@@ -61,14 +82,13 @@ const LogBoxModal = (props) => {
           <button
             onClick={() => {
               unshowmodal();
-              // history.push("/signup");
+              navigate("/signup");
             }}
           >
             Creer un compte
           </button>
         </form>
       </div>
-      {/* </CSSTransition> */}
     </>
   );
 };

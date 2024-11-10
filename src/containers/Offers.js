@@ -9,6 +9,7 @@ import SearchBar from "../components/SearchBar";
 import OffersItem from "../components/OffersItem";
 
 import { apiUrl } from "../config";
+import { store_id } from "../config";
 
 // creation d'un tableau des pages
 
@@ -21,7 +22,14 @@ const Offers = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        apiUrl + "/product?" + "page=" + pageNum
+        apiUrl +
+          "/product?" +
+          "page=" +
+          pageNum +
+          "&search=" +
+          searchTerm +
+          "&store_id=" +
+          store_id
       );
       setData(response.data);
     };
@@ -39,6 +47,13 @@ const Offers = () => {
         }}
       />
       <div className="offers">
+        {data.items && (
+          <Pages
+            itemsPerPage={5}
+            offersNumber={data.itemsTotal}
+            setpageNum={setpageNum}
+          />
+        )}
         {data.items &&
           data.items.map((oneoffer, index) => {
             return (
@@ -47,13 +62,6 @@ const Offers = () => {
               </Link>
             );
           })}
-        {data.items && (
-          <Pages
-            itemsPerPage={5}
-            offersNumber={data.itemsTotal}
-            setpageNum={setpageNum}
-          />
-        )}
       </div>
     </>
   );

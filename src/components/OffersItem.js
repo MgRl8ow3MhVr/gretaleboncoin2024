@@ -2,7 +2,6 @@ import React from "react";
 
 const OffersItem = ({ created_at, photos, price, sold, title }) => {
   const created = new Date(created_at);
-  console.log(created);
   return (
     <div className="offersitem">
       <picture>

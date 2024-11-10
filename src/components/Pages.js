@@ -1,6 +1,6 @@
 import React from "react";
 
-const Pages = props => {
+const Pages = (props) => {
   const { itemsPerPage, offersNumber, setpageNum } = props;
   // Build an array of pages
   const pagesArr = [];
@@ -10,6 +10,7 @@ const Pages = props => {
 
   return (
     <ul className="pages">
+      pages
       {pagesArr.map((pageNumber, index) => {
         return (
           <li

@@ -4,19 +4,31 @@ import Carrousel from "../components/Carrousel";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Link, useParams } from "react-router-dom";
 import { apiUrl } from "../config";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-const OneOffer = () => {
+const OneOffer = ({ token }) => {
   const obj = useParams();
-  console.log(obj);
+  const navigate = useNavigate();
   const id = obj.id;
 
   const [dataoffer, setDataoffer] = useState({ id: null });
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(apiUrl + "/product/" + id);
-      console.log("resp", response.data);
-      setDataoffer(response.data);
+      try {
+        const response = await axios.get(apiUrl + "/product/" + id, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setDataoffer(response.data);
+      } catch (e) {
+        toast("il y a eu une erreur, êtes vous bien connecté ?", {
+          type: "error",
+        });
+        navigate("/");
+      }
     };
     fetchData();
   }, []);

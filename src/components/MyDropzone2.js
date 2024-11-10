@@ -20,13 +20,12 @@ import { useDropzone } from "react-dropzone";
 //   );
 // };
 
-const MyDropzone = props => {
+const MyDropzone = (props) => {
   const previewsArray = [];
-  const onDrop = useCallback(acceptedFiles => {
-    console.log("droped files :", acceptedFiles);
+  const onDrop = useCallback((acceptedFiles) => {
     props.loadFiles(acceptedFiles); // Load all files in the state for future axios uplad
 
-    acceptedFiles.forEach(async file => {
+    acceptedFiles.forEach(async (file) => {
       const reader = new FileReader();
       reader.onabort = () => console.log("file reading was aborted");
       reader.onerror = () => console.log("file reading has failed");
@@ -44,7 +43,7 @@ const MyDropzone = props => {
   return (
     <div className="dropZone" {...getRootProps()}>
       <input {...getInputProps()} />
-      {props.previewsPhotos.map(photo => {
+      {props.previewsPhotos.map((photo) => {
         return <img src={photo} className="imageDropzone" alt="preview"></img>;
       })}
 

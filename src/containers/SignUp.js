@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import { useHistory } from "react-router-dom";
 import { apiUrl } from "../config";
 
 const sendSignUp = async (email, password, pseudo, loginOK, apiAddress) => {

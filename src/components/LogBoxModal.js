@@ -30,11 +30,11 @@ const login = async (email, password, loginOK, unshowmodal) => {
     const userName = response2.data.name;
 
     loginOK(userName, token);
-    toast("Bienvenue " + userName, { type: "success" });
 
     unshowmodal();
   } catch (e) {
-    alert("Authent Error" + e.message);
+    // alert("Authent Error" + e.message);
+    toast("erreur d'authentification" + e.message, { type: "error" });
   }
 };
 

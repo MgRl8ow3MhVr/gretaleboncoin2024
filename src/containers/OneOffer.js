@@ -67,8 +67,8 @@ const OneOffer = ({ token }) => {
               </div>
             </Link>
             <div className="userInfos">
-              <div>{dataoffer.creator}</div>
-              <div>xxx Annonces en ligne</div>
+              <div>vendeur : {dataoffer.creator}</div>
+              <div>x Annonces en ligne</div>
               <span className="orangeBox">Acheter</span>
             </div>
           </div>

@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import MyDropzone from "../components/MyDropzone";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { apiUrl, store_id } from "../config";
 
-const Upload = ({ token }) => {
+const Upload = ({ token, username }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -25,6 +26,8 @@ const Upload = ({ token }) => {
             data.append("description", description);
             data.append("price", price);
             data.append("store_id", store_id);
+            data.append("creator", username);
+
             filesPhoto.map((filePhoto) => {
               data.append(`files[]`, filePhoto);
             });
@@ -34,9 +37,12 @@ const Upload = ({ token }) => {
               //   Authorization: `Bearer ${token}`
               // }
             });
-            alert(
+            toast(
               "L'objet a bien été mis en ligne. Vous allez être redirigé vers l'accueil"
             );
+            // alert(
+            //   "L'objet a bien été mis en ligne. Vous allez être redirigé vers l'accueil"
+            // );
             navigate("/");
           } catch (error) {
             console.log(error.message);

@@ -21,25 +21,27 @@ const App = () => {
   const userStored = localStorage.getItem("username") || null;
   const tokenStored = localStorage.getItem("token") || null;
 
-  const [user, setUser] = useState(userStored);
+  const [username, setUsername] = useState(userStored);
   const [token, setToken] = useState(tokenStored);
   const [showModal, setShowModal] = useState(false);
 
   //Login actions to be passed in Header and Sign uP
   const loginOK = (username, token) => {
-    setUser(username);
+    setUsername(username);
     setToken(token);
     localStorage.setItem("username", username);
     localStorage.setItem("token", token);
+    toast("Bienvenue " + username, { type: "success" });
   };
 
   //Login actions to be passed in Header to UnLog
   const unLog = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    setUser(null);
+    setUsername(null);
     setToken(null);
-    alert("vous etes déconnecté");
+    toast("Vous êtes déconnecté", { type: "success" });
+    // alert("vous etes déconnecté");
   };
 
   return (
@@ -54,21 +56,15 @@ const App = () => {
         />
       )}
       <ToastContainer
-        position="bottom-center"
+        position="bottom-left"
         autoClose={2000}
         hideProgressBar={true}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
         theme="light"
       />
 
       {/* # # # # # # # HEADER # # # # # # # # # # # #  */}
       <Header
-        user={user}
+        user={username}
         showmodal={() => {
           setShowModal(true);
         }}
@@ -82,7 +78,10 @@ const App = () => {
           <Route path="/oneoffer/:id" element={<OneOffer token={token} />} />
 
           {/* # # # # # # # ROUTE PUBLISH # # # # # # # # # # # #  */}
-          <Route path="/publish" element={<Publish token={token} />} />
+          <Route
+            path="/publish"
+            element={<Publish token={token} username={username} />}
+          />
 
           {/* # # # # # # # ROUTE FOR SIGN UP # # # # # # # # # # # #  */}
           <Route path="/signup" element={<SignUp loginOK={loginOK} />} />

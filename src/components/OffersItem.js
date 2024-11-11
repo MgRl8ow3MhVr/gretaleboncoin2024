@@ -1,6 +1,6 @@
 import React from "react";
 
-const OffersItem = ({ created_at, photos, price, sold, title }) => {
+const OffersItem = ({ created_at, photos, price, title }) => {
   const created = new Date(created_at);
   return (
     <div className="offersitem">

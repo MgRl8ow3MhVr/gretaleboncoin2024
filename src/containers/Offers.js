@@ -8,8 +8,7 @@ import Pages from "../components/Pages";
 import SearchBar from "../components/SearchBar";
 import OffersItem from "../components/OffersItem";
 
-import { apiUrl } from "../config";
-import { store_id } from "../config";
+import { apiUrl, store_id } from "../config";
 
 // creation d'un tableau des pages
 
@@ -49,9 +48,9 @@ const Offers = () => {
       <div className="offers">
         {data.items && (
           <Pages
-            itemsPerPage={5}
-            offersNumber={data.itemsTotal}
+            pageTotal={data.pageTotal}
             setpageNum={setpageNum}
+            pageNum={pageNum}
           />
         )}
         {data.items &&

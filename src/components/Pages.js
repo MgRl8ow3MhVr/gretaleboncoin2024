@@ -1,25 +1,25 @@
 import React from "react";
 
-const Pages = (props) => {
-  const { itemsPerPage, offersNumber, setpageNum } = props;
+const Pages = ({ pageTotal, setpageNum, pageNum }) => {
   // Build an array of pages
   const pagesArr = [];
-  for (let i = 1; i < Math.floor(offersNumber / itemsPerPage) + 2; i++) {
+  for (let i = 1; i < pageTotal; i++) {
     pagesArr.push(i);
   }
 
   return (
     <ul className="pages">
       pages
-      {pagesArr.map((pageNumber, index) => {
+      {pagesArr.map((i) => {
         return (
           <li
-            key={index}
+            key={i}
             onClick={() => {
-              setpageNum(pageNumber);
+              setpageNum(i);
             }}
+            style={{ fontSize: pageNum === i ? "30px" : "20px" }}
           >
-            {pageNumber}
+            {i}
           </li>
         );
       })}

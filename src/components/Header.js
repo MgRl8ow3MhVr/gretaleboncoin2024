@@ -1,6 +1,7 @@
 import React from "react";
-import logo from "./images/logo.svg";
-import userpic from "./images/userpic.svg";
+import logo from "../assets/logo.svg";
+import Userpic from "../assets/userpic.svg";
+
 import { Link } from "react-router-dom";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 const Header = (props) => {
@@ -24,7 +25,7 @@ const Header = (props) => {
             user ? unLog() : showmodal();
           }}
         >
-          <img src={userpic} alt="user" height="28px" />
+          <img src={Userpic} alt="user" height="28px" />
           {user && <div>{user}</div>}
           {user ? <div>se deconnecter</div> : <div>se connecter</div>}
         </div>

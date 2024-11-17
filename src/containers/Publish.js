@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import MyDropzone from "../components/MyDropzone";
+import MyDropzone from "../components/Dropzone/MyDropzone";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import SimpleUpload from "../components/Dropzone/SimpleUpload";
 
 import { apiUrl, store_id } from "../config";
 
@@ -82,9 +83,16 @@ const Upload = ({ token, username }) => {
 
         <MyDropzone
           loadFiles={(photos) => {
+            console.log("photos", photos);
             setFilesPhoto(photos);
           }}
         ></MyDropzone>
+        {/* <SimpleUpload
+          loadFiles={(photos) => {
+            console.log("photos", photos);
+            setFilesPhoto(photos);
+          }}
+        /> */}
 
         <input type="submit" value="valider"></input>
       </form>

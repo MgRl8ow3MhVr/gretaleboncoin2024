@@ -8,9 +8,10 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const OneOffer = ({ token }) => {
-  const obj = useParams();
+  const paramsrouter = useParams();
+  const id = paramsrouter.id;
+
   const navigate = useNavigate();
-  const id = obj.id;
 
   const [dataoffer, setDataoffer] = useState({ id: null });
 

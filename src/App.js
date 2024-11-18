@@ -36,7 +36,7 @@ const App = () => {
 
   //Login actions to be passed in Header to UnLog
   const unLog = () => {
-    localStorage.removeItem("user");
+    localStorage.removeItem("username");
     localStorage.removeItem("token");
     setUsername(null);
     setToken(null);

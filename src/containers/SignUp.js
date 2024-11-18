@@ -28,7 +28,7 @@ const SignUp = ({ loginOK }) => {
         onSubmit={(event) => {
           event.preventDefault();
           if (password === password2) {
-            sendSignUp(email, password, pseudo, loginOK, apiAddress);
+            sendSignUp(email, password, pseudo, loginOK);
           } else {
             alert("les mots de passe sont différents");
           }

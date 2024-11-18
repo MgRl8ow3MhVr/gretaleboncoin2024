@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { apiUrl } from "../config";
 
-const sendSignUp = async (email, password, pseudo, loginOK, apiAddress) => {
+const sendSignUp = async (email, password, pseudo, loginOK) => {
   try {
     const response = await axios.post(apiUrl + "/auth/signup", {
       email: email,
@@ -16,9 +16,7 @@ const sendSignUp = async (email, password, pseudo, loginOK, apiAddress) => {
   }
 };
 
-const SignUp = (props) => {
-  const { loginOK, apiAddress } = props;
-  // const history = useHistory();
+const SignUp = ({ loginOK }) => {
   const [pseudo, setPseudo] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -31,7 +29,6 @@ const SignUp = (props) => {
           event.preventDefault();
           if (password === password2) {
             sendSignUp(email, password, pseudo, loginOK, apiAddress);
-            // history.push("/");
           } else {
             alert("les mots de passe sont différents");
           }

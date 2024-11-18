@@ -34,9 +34,9 @@ const Upload = ({ token, username }) => {
             });
 
             const response = await axios.post(apiUrl + "/product", data, {
-              // headers: {
-              //   Authorization: `Bearer ${token}`
-              // }
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
             });
             toast(
               "L'objet a bien été mis en ligne. Vous allez être redirigé vers l'accueil"

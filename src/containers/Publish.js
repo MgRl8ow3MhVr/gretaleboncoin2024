@@ -78,21 +78,18 @@ const Upload = ({ token, username }) => {
           }}
         ></input>
         <h2>Photo*</h2>
-
-        {/* NOUVELLE VERSION DE DROPZONE */}
-
         <MyDropzone
           loadFiles={(photos) => {
             console.log("photos", photos);
             setFilesPhoto(photos);
           }}
         ></MyDropzone>
-        {/* <SimpleUpload
+        <SimpleUpload
           loadFiles={(photos) => {
             console.log("photos", photos);
             setFilesPhoto(photos);
           }}
-        /> */}
+        />
 
         <input type="submit" value="valider"></input>
       </form>

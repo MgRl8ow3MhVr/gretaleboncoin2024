@@ -13,7 +13,7 @@ function SimpleUpload({ loadFiles }) {
   }
 
   return (
-    <div className="App">
+    <div>
       <h2>Add Image:</h2>
       <input type="file" onChange={handleChange} multiple />
       {file.map((f) => {

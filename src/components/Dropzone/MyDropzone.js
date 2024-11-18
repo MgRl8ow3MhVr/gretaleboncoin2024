@@ -20,7 +20,7 @@ function MyDropzone(props) {
 
   return (
     <section className="container">
-      <div {...getRootProps({ className: "dropzone" })} className="dropZone">
+      <div {...getRootProps()} className="dropZone">
         <input {...getInputProps()} />
         <p>Drag 'n' drop some files here, or click to select files</p>
       </div>

@@ -38,8 +38,7 @@ const login = async (email, password, loginOK, unshowmodal) => {
   }
 };
 
-const LogBoxModal = (props) => {
-  const { loginOK, unshowmodal, apiAddress } = props;
+const LogBoxModal = ({ loginOK, unshowmodal, apiAddress }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
